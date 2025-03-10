@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   particlesJS("particles-js", {
     particles: {
       number: {
-        value: isMobile ? 30 : 80,
+        value: isMobile ? 50 : 80,
         density: {
           enable: true,
           value_area: 800,
@@ -43,12 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
       detect_on: "window",
       events: {
         onhover: {
-          enable: !("ontouchstart" in window),
+          enable: !isMobile,
           mode: "grab",
         },
         onclick: {
           enable: true,
           mode: "push",
+        },
+        ontouch: {
+          enable: isMobile, // Enable only on mobile
+          mode: "repulse",
+          delay: 50,
         },
         resize: true,
       },

@@ -75,48 +75,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let touchPos = { x: null, y: null };
 
-  let isScrolling = false;
+  // Mobile Touch Handling
+  let touchTimeout;
 
   document.addEventListener(
     "touchstart",
     (e) => {
-      isScrolling = false;
-      const touch = e.touches[0];
-      if (window.pJSDom[0]) {
-        window.pJSDom[0].pJS.interactivity.mouse.pos_x = touch.clientX;
-        window.pJSDom[0].pJS.interactivity.mouse.pos_y = touch.clientY;
-      }
-    },
-    { passive: true }
-  );
-
-  document.addEventListener(
-    "touchmove",
-    (e) => {
-      isScrolling = true;
-      const touch = e.touches[0];
-      if (!isScrolling && window.pJSDom[0]) {
-        window.pJSDom[0].pJS.interactivity.mouse.pos_x = touch.clientX;
-        window.pJSDom[0].pJS.interactivity.mouse.pos_y = touch.clientY;
-      }
-    },
-    { passive: true }
-  );
-
-  document.addEventListener(
-    "touchmove",
-    (e) => {
-      e.preventDefault();
-      touchPos.x = e.touches[0].clientX;
-      touchPos.y = e.touches[0].clientY;
-
-      if (window.pJSDom && window.pJSDom.length > 0) {
+      if (window.pJSDom.length > 0) {
         const pJS = window.pJSDom[0].pJS;
-        pJS.interactivity.mouse.pos_x = touchPos.x;
-        pJS.interactivity.mouse.pos_y = touchPos.y;
+        const touch = e.touches[0];
+        pJS.interactivity.mouse.pos_x = touch.clientX;
+        pJS.interactivity.mouse.pos_y = touch.clientY;
       }
     },
-    { passive: false }
+    { passive: true }
+  );
+
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      // Allow native scrolling
+      clearTimeout(touchTimeout);
+      touchTimeout = setTimeout(() => {
+        if (window.pJSDom.length > 0) {
+          const pJS = window.pJSDom[0].pJS;
+          const touch = e.touches[0];
+          pJS.interactivity.mouse.pos_x = touch.clientX;
+          pJS.interactivity.mouse.pos_y = touch.clientY;
+        }
+      }, 100);
+    },
+    { passive: true }
   );
   const yearSpan = document.getElementById("copyright-year");
   if (yearSpan) {

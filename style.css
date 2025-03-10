@@ -193,7 +193,8 @@ h1 {
 }
 
 #particles-js {
-  position: fixed;
+  position: fixed !important;
+  pointer-events: none;
   width: 100%;
   height: 100%;
   top: 0;
@@ -209,11 +210,12 @@ h1 {
   -webkit-backface-visibility: hidden;
 }
 #particles-js {
-  position: fixed;
+  position: fixed !important;
+  pointer-events: none;
   width: 100%;
   height: 100%;
   background: #111;
-  z-index: -1;
+  z-index: -1; 
 }
 
 body {
@@ -274,18 +276,19 @@ canvas[data-particles] {
   }
 }
 
-#particles-js {
-    pointer-events: none; 
-}
-
 .container {
-    position: relative;
-    z-index: 2;
-    -webkit-overflow-scrolling: touch; 
-    overflow-y: visible;
-    height: 100vh;
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: visible;
+}
+body {
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch;
 }
 
 canvas[data-particles] {
-    pointer-events: none !important;
+  pointer-events: none !important;
 }
