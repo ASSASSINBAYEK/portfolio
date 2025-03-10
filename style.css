@@ -273,3 +273,19 @@ canvas[data-particles] {
     transform: translateY(0);
   }
 }
+
+#particles-js {
+    pointer-events: none; /* Allow touch to pass through */
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling */
+    overflow-y: auto;
+    height: 100vh;
+}
+
+canvas[data-particles] {
+    pointer-events: none !important;
+}
