@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let touchPos = { x: null, y: null };
 
-  // Mobile Touch Handling
   let touchTimeout;
 
   document.addEventListener(
@@ -94,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener(
     "touchmove",
     (e) => {
-      // Allow native scrolling
       clearTimeout(touchTimeout);
       touchTimeout = setTimeout(() => {
         if (window.pJSDom.length > 0) {

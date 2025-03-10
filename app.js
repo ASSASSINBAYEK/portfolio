@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           mode: "push",
         },
         ontouch: {
-          enable: isMobile, // Enable only on mobile
+          enable: isMobile, 
           mode: "repulse",
           delay: 50,
         },
