@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   particlesJS("particles-js", {
     particles: {
       number: {
-        value: 80,
+        value: isMobile ? 30 : 80,
         density: {
           enable: true,
           value_area: 800,
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       move: {
         enable: true,
-        speed: 4,
+        speed: isMobile ? 2 : 4,
         direction: "none",
         random: false,
         straight: false,
