@@ -275,14 +275,14 @@ canvas[data-particles] {
 }
 
 #particles-js {
-    pointer-events: none; /* Allow touch to pass through */
+    pointer-events: none; 
 }
 
 .container {
     position: relative;
     z-index: 2;
-    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling */
-    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; 
+    overflow-y: visible;
     height: 100vh;
 }
 

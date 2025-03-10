@@ -1,4 +1,6 @@
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
+  navigator.userAgent
+);
 document.addEventListener("DOMContentLoaded", () => {
   const loadingScreen = document.getElementById("loading-screen");
   if (loadingScreen) {
@@ -72,6 +74,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let touchPos = { x: null, y: null };
+
+  let isScrolling = false;
+
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      isScrolling = false;
+      const touch = e.touches[0];
+      if (window.pJSDom[0]) {
+        window.pJSDom[0].pJS.interactivity.mouse.pos_x = touch.clientX;
+        window.pJSDom[0].pJS.interactivity.mouse.pos_y = touch.clientY;
+      }
+    },
+    { passive: true }
+  );
+
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      isScrolling = true;
+      const touch = e.touches[0];
+      if (!isScrolling && window.pJSDom[0]) {
+        window.pJSDom[0].pJS.interactivity.mouse.pos_x = touch.clientX;
+        window.pJSDom[0].pJS.interactivity.mouse.pos_y = touch.clientY;
+      }
+    },
+    { passive: true }
+  );
 
   document.addEventListener(
     "touchmove",
